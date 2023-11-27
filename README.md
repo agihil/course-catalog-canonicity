@@ -56,14 +56,20 @@ The columns represent:
 The table is obtained from the tables data/writers.csv and data/courses.csv using the notebook time_get_counts.ipynb.
 Each row represents a semester, Which semester can be seen from the column (semester-start) that contains timestamps (see above: data/courses.csv).
 The columns represent:
-- xyz
+- for each university: the total number of writers mentioned in the course descriptions of the resp. semester
+- for each university: the rel number of writers mentioned in the resp. semester, meaning that the total number of writers in the resp. semester is divided by the number of course descriptions available in this semester.
+- for each university: the total number of female writers mentioned in the course descriptions of the resp. semester
+- for each university: the total number of male writers mentioned in the course descriptions of the resp. semester
+- for each university: the relative number of female writers mentioned in the course descriptions of the resp. semester divided by the total number of writers mentioned in the course descriptions of the resp. semester
+- for each university: the relative number of male writers mentioned in the course descriptions of the resp. semester divided by the total number of writers mentioned in the course descriptions of the resp. semester
+- for each university: the double-relative number of male writers mentioned in the course descriptions of the resp. semester divided by the total number of writers mentioned in the course descriptions of the resp. semester and again divided by the number of course descriptions available for the resp. semester
 
 ### data/universities.csv
 The table contains short names and the real names of the universities sampled.
 
 ## Notebooks
 The notebooks are found in the main folder. A description of what the notebooks do is found at the top of each file.
-Overview: 
+Overview: The notebook total_numbers.ipynb visualizes statistics about the identified persons and writers. The notebooks writers_get_counts.ipynb and time_get_counts.ipynb are used to extract the tables data/writer_counts.csv and data/time_counts.csv from the tables data/writers.csv and data/courses.csv. The extracted that way is than visualized, and further statistics computed for it in the notebooks writers_statistics_and_visualize.ipynb and time_statistics_and_visualize.ipynb.
 
 # Detailed Documentation
 
