@@ -3,37 +3,50 @@
 The repository contains a dataset that describes which writers appear how frequently in course descriptions of (modern) German studies courses in a randomly 
 selected but non-representative sample of six German, two Austrian universities and one Swiss university.
 
-In the following you find 1. a description of the data, code and results in this repository and 2. the documentation on how the data was obtained and which data was used.
+The idea behind this is that mentions of writers in course descriptions of literary studies programs are an indicator for what is taught in these courses and that again is an indicator of the academic canonicity of the respective writer in the time the course is held. 
+
+The subject "German studies" is usually divided in three to four parts: Literary studies for the medieval period, Literary studies for the modern period, Linguistics and, if it is a program for teachers-to-be Didactics. For this project, the focus was on the modern period (since this is my field of study). 
+
+In the following you find 1. a description of the data, code and results in this repository and 2. a more detailed documentation on how the data was obtained and which data was used.
 
 # Description of the data
-xyz
+
 
 # Detailed Documentation
-## Grundsätzliches
-Fokus auf modern Period
 
 ## Selection Process
+
 ### Lists of German Studies Programs in Germany, Austria and Switzerland.
-In einem ersten Schritt wurden Listen von Germanistik-Studiengängen in Deutschland, Österreich und der Schweiz zusammengestellt. Zunächst war das Ziel, Studiengänge, nicht Universitäten
-auszuwählen. Deshalb sind die erfassten Informationen detaillierter als in der späteren Analyse tatsächlich benutzt.
+The population surveyed in this project are German studies courses in Germany, Austria and Switzerland. Therefore, the first step was to compile lists of German studies courses in these countries. 
+The initial aim was to select degree programs, not universities. Therefore, the information collected is more detailed than actually used in the later analysis.
 
-#### Deutschland
-Für Deutschland wurde die Seite der "Agentur für Arbeit" (https://web.arbeitsagentur.de/studiensuche/) genutzt und mit der Suchfunktion nach den Schlagwörtern "Germanistik" und "Deutsch" gesucht. Die damit erzielten Listen wurden in eine Tabelle kopiert. 
-Studiengänge mit einem Fokus auf dem Mittelalter, auf die Linguistik, auf Interkulturalität, auf Übersetzen, auf Deutsch als Zweit- oder Fremdsprache, Studiengänge, in denen Germanistik nur das Nebenfach darstellte, sowie Studiengänge, die offensichtlich nichts mit 
-Literaturwissenschaft sondern nur mit der deutschen Sprache beschäftigen, wurden entfernt. Für die übrigen Studiengänge wurde (teilweise automatisch, teilweise manuell)
-jeweils erfasst: die Stadt, das Bundesland, der Abschluss, ob es sich um einen Lehramtsstudiengang handelt und wenn ja, für welche Schulart. Anschließend wurden zur Vereinfachung
-alle Lehramtsstudiengänge außer für die Schulart Gymnasium entfernt.
+#### Germany
+For Germany, the website of the "Agentur für Arbeit" (https://web.arbeitsagentur.de/studiensuche/) was used and the keywords "Germanistik" and "Deutsch" were searched for using the search function. The resulting lists were copied into a table. 
+Degree programs with a focus on the Middle Ages, linguistics, interculturality, translation, German as a second or foreign language, degree programs in which German Studies was only a minor subject, as well as degree programs that clearly did not deal with literary studies but only with the German language were removed. For the remaining study programs, the following was recorded (partly automatically, partly manually):
+the city, the federal state, the degree, whether it was a teachers' training program and, if so, for which type of school. Subsequently, for the sake of simplicity
+all teacher training programs except for the "Gymnasium" school type were removed.
+126 study programs were obtained that way.
 
+#### Austria
+The starting point was the website www.studienwahl.at. There, the keyword "Germanistik" was searched for and, as with the example of Germany, some degree courses were removed and additional information recorded.
+15 study programs were obtained that way.
 
-#### Österreich
-Ausgangspunkt war die Internetseite www.studienwahl.at. Dort wurde nach dem Schlagwort "Germanistik" gesucht und wie beim Beispiel Deutschland einige Studiengänge entfernt und zusätzliche Informationen erfasst.
-
-####
-Ausgangspunkt für die Schweiz war die Seite https://www.berufsberatung.ch/dyn/show/17500, auf der bereits Studiengänge im Fach "Studienrichtung Deutsche Sprach- und Literaturwissenschaft" 
-geführt werden. Diese Studiengänge wurden wie bei Deutschland und Österreich bereinigt und mit zusätzlichen Daten angereichert.
+#### Switzerland
+The starting point for Switzerland was the website https://www.berufsberatung.ch/dyn/show/17500, which already offers degree programs in the subject "German Linguistics and Literature". 
+are already listed. As with Germany and Austria, these degree programs were adjusted and enriched with additional data.
+12 study programs were obtained that way.
 
 ### Selection
-Zunächst war die Idee, Studiengänge auszuwählen. Dafür wurden als Parameter verwendet: 
+Zunächst war die Idee, Studiengänge auszuwählen. Als Parameter sollten die Art des Abschlusses dienen und ob es sich um einen Lehramts-Studiengang handelte oder nicht. Für Deutschland wurde außerdem berücksichtigt, ob es sich um ein ehemals ostdeutsches oder westdeutsches Bundesland handelte. 
+Um ein Vorlesungsverzeichnis zu scrapen muss man sich mit dessen Struktur vertraut machen. Da das etwas Zeit kostet wurde schnell klar, dass es sinnvoller wäre, alle Veranstaltungen einer Uni im Bereich NDL zu scrapen, wenn man sich schon mit der Struktur vertraut gemacht hat, anstatt den jeweiligen Studiengang als zusätzlich einschränkenden Parameter zu behalten.
+Deshalb wurden die Listen von Studiengängen reduziert auf Listen von Universitäten. Für Deutschland wurden drei Universitäten aus den ehemals ostdeutschen Bundesländern, drei aus den ehemals westdeutschen Bundesländern ausgewählt (Berlin wurde beiden Gruppen zugerechnet). Wurde eine Uni eines Bundeslandes ausgewählt, wurden die anderen Unis dieses Bundeslands aus der Liste entfernt, damit kein Bundesland mit zwei Unis vertreten wäre. Für Österreich wurden zwei, für die Schweiz ein Bundesland ausgewählt.
+Die Zufallsauswahl wurde für einzelne Fälle wiederholt, wenn es kein Online-Vorlesungsverzeichnis gab, das den Kriterien entsprach (s. u.: Scraping).
+
+## Scraping
+Die per Zufallsauswahl gewählten Universitäten wurden anschließend daraufhin überprüft: ob sie ein online zugängliches Vorlesungsverzeichnis haben, ob dieses mindestens 10 Semester zurücking und ob es sich hinsichtlich der hier relevanten Kriterien (Einschränkung auf Modern German Literature) scrapen lässt. Fälle, in denen diese Kriterien nicht erfüllt waren, wurden als Nonresponse betrachtet und eine Zufallsauswahl (unter Rücknahme aller Unis des jew. Bundeslands) wiederholt. Was bedeutet: Ein Vorlesungsverzeichnis lässt sich nicht scrapen? In manchen Fällen waren etwa die Suchfunktionen im Vorlesungsverzeichnis eingeschränkt, Namen von Studiengängen und Modulordnungen haben zu oft gewechselt, sodass sich für mich als Außenstehende ohne sehr aufwendige Detailanalyse nicht nachvollziehen ließ, wie ich die nötigen Informationen automatisiert abgreifen kann.
+In jedem Fall involvierte das Scrapen, sich damit vertraut zu machen, wie das Online-Vorlesungsverzeichnis strukturiert ist, wo die Veranstaltungen aus dem Bereich NDL liegen oder wie sie benannt sind. Der für das Scraping verwendete Code war damit für die unterschiedlichen Unis sehr individuell und sicherlich ist das Datenset nicht vollständig korrekt.
+
+
 
 
 
