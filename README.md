@@ -9,8 +9,33 @@ The subject "German studies" is usually divided in three to four parts: Literary
 
 In the following you find 1. a description of the data, code and results in this repository and 2. a more detailed documentation on how the data was obtained and which data was used.
 
-# Description of the data
+# Description
+## Data
+### data/courses.csv
+Die Tabelle enthält:
+- eine Spalte mit der Kurs-ID (von mir vergeben, setzt sich zusammen aus stadt und Nummer)
+- eine Spalte mit dem Titel des jeweiligen Kurses
+- eine Spalte mit der Information ob eine zugehörige Inhaltsbeschreibung extrahiert wurde (1) oder nicht (0). Die Inhaltsbeschreibung selbst wird hier nicht veröffentlicht, damit keine Rechte verletzt werden.
+- eine Spalte mit dem Semester
+- eine Spalte mit dem Start des Semesters als Zeitdatum
+- eine Spalte mit der Universität (welche Unis das jeweils sind findet sich in der Tabelle unis)
+- eine Spalte mit dem Land
+- eine Spalte mit den GND-IDs zu den Entities die mit dem unten beschriebenen Verfahren in der Kursbeschreibung identifiziert wurden.
+- counts...
 
+### data/writers.csv
+Each row represents a writer. The columns represent:
+- the GND-ID
+- the occupation according to the GND
+- the date of birth accoring to the GND
+- the date of death according to the GND
+- the gender according to the GND/as identified by the gender guesser (see section on further cleaning below)
+- the associated countries according to the GND
+- a normalised form of the countries, where only the association with Germany (D), Austria (Ö) or Switzerland (S) is stored
+- counts... 
+
+### data/universities.csv
+The table contains short names and the real names of the universities sampled.
 
 # Detailed Documentation
 
@@ -56,7 +81,7 @@ For NER, five models were evaluated based on the manually annotated data (see ta
 ## Entity Linking
 The program OpenRefine was used for Entity Linking. The entities were linked automatically to the GND data of the German national library. Für die Entitäten, bei denen die automatische Zuordnung nicht funktioniert hat (etwa wegen Fehlschreibungen, Abkürzungen oder mehreren Entitäten des gleichen Namens) wurde manuelles Linking versucht. Wegen beschränkter Ressourcen wurde aber **keine detaillierte Recherche zu den Entitäten durchgeführt, sondern heuristisch vorgegangen**: Wenn es einen Schriftsteller des jeweiligen Namens gab, wurde es als wahrscheinlich angesehen, dass dieser gemeint ist und nicht beispielsweise ein Arzt gleichen Namens. Auch meine Kenntnis über Autoren, Literaturwissenschaftler und andere Personen, die wahrscheinlich in Kursbeschreibungen genannt werden, floss in diese Arbeit ein. Qualitative Eindrücke bei dieser Arbeit waren 1. dass die Namen insgesamt häufig falsch geschrieben waren (vermutlich weil Kursbeschreibungen schneller und weniger sorgfältig geschrieben werden als beispielsweise Publikationen) und 2. das v.a. Namen nicht-deutschen Ursprungs häufig falsch geschrieben wurden und deshalb nicht zugeordnet wurden. Das ist wirklich ein subjektiver Eindruck, trotzdem wurde bei solchen Namen zum Teil eine zusätzliche Google-Suche hinzugenommen, um einen eventuellen Bias auszugleichen.
 Insgesamt wurden auf diese Weise 4410 Entitäten ausgemacht. (Das bedeutet im Umkehrschluss nicht, dass 3279 Entitäten nicht zugeordnet werden konnte, denn aufgrund variablen und falschen Schreibungen der Namen kamen einige Entitäten vorher mehrfach vor).
-Für die gematchten Identitäten wurden aus der Gemeinsamen Normdatei jeweils das Geschlecht, der Beruf und der Ländercode abgerufen.
+Für die gematchten Identitäten wurden aus der Gemeinsamen Normdatei jeweils ein standardisierter Name, das Geschlecht, der Beruf und der Ländercode abgerufen.
 
 ## Further Cleaning and Processing
 Für 704 der identifizierten Entitäten ist in der GND kein Geschlecht hinterlegt. Für diese wurde mithilfe des Python Gender Guessers ein Geschlecht anhand der Vornamen geraten. Auf diese Weise blieben 203 Entitäten übrig, für die kein Geschlecht in den Metadaten vermerkt ist. Im Fall eines Transmannes wurde das in der GND angegebene Geschlecht von "Weiblich; Männlich" zu "Männlich" korrigiert. 
