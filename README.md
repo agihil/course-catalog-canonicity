@@ -1,7 +1,7 @@
 # course-catalog-canonicity
 
 The repository contains a dataset that describes which writers appear how frequently in course descriptions of (modern) German studies courses in a randomly 
-selected but non-representative sample of six German, two Austrian and one Swiss university.
+selected but non-representative sample of six German, two Austrian universities and one Swiss university.
 
 In the following you find 1. a description of the data, code and results in this repository and 2. the documentation on how the data was obtained and which data was used.
 
@@ -18,8 +18,7 @@ In einem ersten Schritt wurden Listen von Germanistik-Studiengängen in Deutschl
 auszuwählen. Deshalb sind die erfassten Informationen detaillierter als in der späteren Analyse tatsächlich benutzt.
 
 #### Deutschland
-Für Deutschland wurde die Seite 
-der "Agentur für Arbeit" genutzt und mit der Suchfunktion nach den Schlagwörtern "Germanistik" und "Deutsch" gesucht. Die damit erzielten Listen wurden in eine Tabelle kopiert. 
+Für Deutschland wurde die Seite der "Agentur für Arbeit" (https://web.arbeitsagentur.de/studiensuche/) genutzt und mit der Suchfunktion nach den Schlagwörtern "Germanistik" und "Deutsch" gesucht. Die damit erzielten Listen wurden in eine Tabelle kopiert. 
 Studiengänge mit einem Fokus auf dem Mittelalter, auf die Linguistik, auf Interkulturalität, auf Übersetzen, auf Deutsch als Zweit- oder Fremdsprache, Studiengänge, in denen Germanistik nur das Nebenfach darstellte, sowie Studiengänge, die offensichtlich nichts mit 
 Literaturwissenschaft sondern nur mit der deutschen Sprache beschäftigen, wurden entfernt. Für die übrigen Studiengänge wurde (teilweise automatisch, teilweise manuell)
 jeweils erfasst: die Stadt, das Bundesland, der Abschluss, ob es sich um einen Lehramtsstudiengang handelt und wenn ja, für welche Schulart. Anschließend wurden zur Vereinfachung
@@ -43,4 +42,6 @@ Zunächst war die Idee, Studiengänge auszuwählen. Dafür wurden als Parameter 
 # Resources
 
 https://web.arbeitsagentur.de/studiensuche/
+www.studienwahl.at
+https://www.berufsberatung.ch/dyn/show/17500
 
