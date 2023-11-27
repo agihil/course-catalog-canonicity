@@ -70,7 +70,12 @@ Die Zufallsauswahl wurde für einzelne Fälle wiederholt, wenn es kein Online-Vo
 ## Scraping
 Die per Zufallsauswahl gewählten Universitäten wurden anschließend daraufhin überprüft: ob sie ein online zugängliches Vorlesungsverzeichnis haben, ob dieses mindestens 10 Semester zurücking und ob es sich hinsichtlich der hier relevanten Kriterien (Einschränkung auf Modern German Literature) scrapen lässt. Fälle, in denen diese Kriterien nicht erfüllt waren, wurden als Nonresponse betrachtet und eine Zufallsauswahl (unter Rücknahme aller Unis des jew. Bundeslands) wiederholt. Was bedeutet: Ein Vorlesungsverzeichnis lässt sich nicht scrapen? In manchen Fällen waren etwa die Suchfunktionen im Vorlesungsverzeichnis eingeschränkt, Namen von Studiengängen und Modulordnungen haben zu oft gewechselt, sodass sich für mich als Außenstehende ohne sehr aufwendige Detailanalyse nicht nachvollziehen ließ, wie ich die nötigen Informationen automatisiert abgreifen kann.
 In jedem Fall involvierte das Scrapen, sich damit vertraut zu machen, wie das Online-Vorlesungsverzeichnis strukturiert ist, wo die Veranstaltungen aus dem Bereich NDL liegen oder wie sie benannt sind. Der für das Scraping verwendete Code war damit für die unterschiedlichen Unis sehr individuell und sicherlich ist das Datenset nicht vollständig korrekt.
-Figure 1 im Unterordner results zeigt die Menge der erzielten Daten.
+
+## Scraped courses data
+Insgesamt wurden auf diesem Weg 7185 Veranstaltungen gescraped, von 6127 davon konnten auch Kursbeschreibungen gescraped werden. The course descriptions contain a total of 868125 tokens and have an average length of 141,7 tokens.
+Figures 1 and 2 in the subfolder results show the quantitites of descriptions and titles obtained per semester and uni. The figures are plotted using the notebook total_numbers.ipynb.
+
+
 
 ## Manual annotation
 Six course descriptions were randomly chosen from each university for manual annotation. References to Persons (NEs) and, as a subset, to writers were annotated. Of the 179 NEs identified, about 53%, belong to writers. This led to the insight that Named Entitiy Recognition (NER) alone is not sufficient to identify writers.
