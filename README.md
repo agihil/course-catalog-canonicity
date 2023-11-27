@@ -12,16 +12,15 @@ In the following you find 1. a description of the data, code and results in this
 # Description
 ## Data
 ### data/courses.csv
-Die Tabelle enthält:
-- eine Spalte mit der Kurs-ID (von mir vergeben, setzt sich zusammen aus stadt und Nummer)
-- eine Spalte mit dem Titel des jeweiligen Kurses
-- eine Spalte mit der Information ob eine zugehörige Inhaltsbeschreibung extrahiert wurde (1) oder nicht (0). Die Inhaltsbeschreibung selbst wird hier nicht veröffentlicht, damit keine Rechte verletzt werden.
-- eine Spalte mit dem Semester
-- eine Spalte mit dem Start des Semesters als Zeitdatum
-- eine Spalte mit der Universität (welche Unis das jeweils sind findet sich in der Tabelle unis)
-- eine Spalte mit dem Land
-- eine Spalte mit den GND-IDs zu den Entities die mit dem unten beschriebenen Verfahren in der Kursbeschreibung identifiziert wurden.
-- counts...
+Each row represents a university course. The columsn represent:
+- an ID (assigned by me, composed of city and number)
+- the title of the course
+- the information whether an associated content description has been extracted (1) or not (0). The content description itself is not published here so that no rights are violated.
+- the semester in which the course is held
+- the semester as a timestamp (09+year for winter term; 04+year for summer term)
+- the short name of the university
+- the respective country
+- the GND-IDs belonging to the named entitites identified in the course description. (For a more detailed description look below.)
 
 ### data/writers.csv
 Each row represents a writer. The columns represent:
@@ -43,8 +42,28 @@ Each row represents a person. The columns represent:
 - the gender according to the GND
 - the associated countries according to the GND
 
+### data/writer_counts.csv
+The table is obtained from the tables data/writers.csv and data/courses.csv using the notebook writers_get_counts.ipynb.
+Each row represents a writer, indexed by the GND-ID.
+The columns represent:
+- the total number of mentions in all the course descriptions (total)
+- for each university: the total number of mentions of this author in the courses held at this university (resp.uni+_total)
+- for each university: the relative number of mentions of the resp. author in the courses held at this university. Relative number in this context means: the total number of mentions of the resp. author divided by the number of course descriptions scraped for the resp. university (resp.uni+_rel)
+- for each country: the total number of mentions in all course descriptions of the universities in that country. (G is short for Germany, A for Austria, S for Switzerland)
+- for each country: the relative number of mentions of the resp. author. Relative number in this context means: The sum of relative numbers of mentions of the resp. author per university divided by the number of universities assigned to the resp. country.
+
+### data/time_counts.csv
+The table is obtained from the tables data/writers.csv and data/courses.csv using the notebook time_get_counts.ipynb.
+Each row represents a semester, Which semester can be seen from the column (semester-start) that contains timestamps (see above: data/courses.csv).
+The columns represent:
+- xyz
+
 ### data/universities.csv
 The table contains short names and the real names of the universities sampled.
+
+## Notebooks
+The notebooks are found in the main folder. A description of what the notebooks do is found at the top of each file.
+Overview: 
 
 # Detailed Documentation
 
@@ -84,8 +103,6 @@ In jedem Fall involvierte das Scrapen, sich damit vertraut zu machen, wie das On
 Insgesamt wurden auf diesem Weg 7185 Veranstaltungen gescraped, von 6127 davon konnten auch Kursbeschreibungen gescraped werden. The course descriptions contain a total of 868125 tokens and have an average length of 141,7 tokens.
 Figures 1 and 2 in the subfolder results show the quantitites of descriptions and titles obtained per semester and uni. The figures are plotted using the notebook total_numbers.ipynb.
 
-
-
 ## Manual annotation
 Six course descriptions were randomly chosen from each university for manual annotation. References to Persons (NEs) and, as a subset, to writers were annotated. Of the 179 NEs identified, about 53%, belong to writers. This led to the insight that Named Entitiy Recognition (NER) alone is not sufficient to identify writers.
 
@@ -103,7 +120,9 @@ Die GND verwendet bei den Berufsbezeichnungen gegenderte Formen (zum Beispiel: "
 Anschließend wurden alle Entitäten extrahiert, bei denen es sich um Schriftsteller handelt. Die GND führt hierfür verschiedene Namen (Schrifsteller, Dramatiker, Lyriker, Erzähler). Das sind insgesamt 1814, davon sind...
 
 # Counting
-Schließlich wurden die GND-IDs mit den Seminardaten gematcht und folgende Zählungen erhoben:
+Schließlich wurden die GND-IDs mit den Seminardaten gematcht und gezählt: 1. (pro Autor) Wie oft welcher Autor wo wie oft genannt wird und 2. (pro Semester): Wie viele Autoren werden in welchem Semester genannt? Wie viele Frauen werden genannt? Wie viele Männer werden genannt?
+In beiden Fällen wurden absolute und relative Werte erhoben. Relativ bedeutet hier zum Teil eine zweifache Normalisierung. Denn zunächst muss bezogen auf die Unis normalisiert werden, da es große Unterschiede gibt, wie viele Inhaltsbeschreibungen für welche Uni vorliegen. In einem zweiten Schritt wurde, um die Werte für die Länder miteinander zu vergleichen, durch die Zahl der Unis pro Land geteilt.
+
 
 
 
