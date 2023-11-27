@@ -100,7 +100,7 @@ Für die gematchten Identitäten wurden aus der Gemeinsamen Normdatei jeweils ei
 ## Further Cleaning and Processing
 Für 704 der identifizierten Entitäten ist in der GND kein Geschlecht hinterlegt. Für diese wurde mithilfe des Python Gender Guessers ein Geschlecht anhand der Vornamen geraten. Auf diese Weise blieben 203 Entitäten übrig, für die kein Geschlecht in den Metadaten vermerkt ist. Im Fall eines Transmannes wurde das in der GND angegebene Geschlecht von "Weiblich; Männlich" zu "Männlich" korrigiert. 
 Die GND verwendet bei den Berufsbezeichnungen gegenderte Formen (zum Beispiel: "Schriftsteller" und "Schriftstellerin"). Diese Bezeichnungen wurden für die quantitative Auswertung auf die männliche Form reduziert, das Geschlecht ist ja jewils in einer separaten Spalte gespeichert.
-Anschließend wurden alle Entitäten extrahiert, bei denen es sich um Schriftsteller handelt. Die GND führt hierfür verschiedene Namen (Schrifsteller, Dramatiker, Lyriker, Erzähler).
+Anschließend wurden alle Entitäten extrahiert, bei denen es sich um Schriftsteller handelt. Die GND führt hierfür verschiedene Namen (Schrifsteller, Dramatiker, Lyriker, Erzähler). Das sind insgesamt 1814, davon sind...
 
 # Counting
 Schließlich wurden die GND-IDs mit den Seminardaten gematcht und folgende Zählungen erhoben:
