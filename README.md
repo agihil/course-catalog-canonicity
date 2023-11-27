@@ -45,8 +45,17 @@ Die Zufallsauswahl wurde für einzelne Fälle wiederholt, wenn es kein Online-Vo
 ## Scraping
 Die per Zufallsauswahl gewählten Universitäten wurden anschließend daraufhin überprüft: ob sie ein online zugängliches Vorlesungsverzeichnis haben, ob dieses mindestens 10 Semester zurücking und ob es sich hinsichtlich der hier relevanten Kriterien (Einschränkung auf Modern German Literature) scrapen lässt. Fälle, in denen diese Kriterien nicht erfüllt waren, wurden als Nonresponse betrachtet und eine Zufallsauswahl (unter Rücknahme aller Unis des jew. Bundeslands) wiederholt. Was bedeutet: Ein Vorlesungsverzeichnis lässt sich nicht scrapen? In manchen Fällen waren etwa die Suchfunktionen im Vorlesungsverzeichnis eingeschränkt, Namen von Studiengängen und Modulordnungen haben zu oft gewechselt, sodass sich für mich als Außenstehende ohne sehr aufwendige Detailanalyse nicht nachvollziehen ließ, wie ich die nötigen Informationen automatisiert abgreifen kann.
 In jedem Fall involvierte das Scrapen, sich damit vertraut zu machen, wie das Online-Vorlesungsverzeichnis strukturiert ist, wo die Veranstaltungen aus dem Bereich NDL liegen oder wie sie benannt sind. Der für das Scraping verwendete Code war damit für die unterschiedlichen Unis sehr individuell und sicherlich ist das Datenset nicht vollständig korrekt.
+Figure 1 im Unterordner results zeigt die Menge der erzielten Daten.
 
+## Manual annotation
+Six course descriptions were randomly chosen from each university for manual annotation. References to Persons (NEs) and, as a subset, to writers were annotated. Of the 179 NEs identified, about 53%, belong to writers. This led to the insight that Named Entitiy Recognition (NER) alone is not sufficient to identify writers.
 
+## NER
+For NER, five models were evaluated based on the manually annotated data (see table 1 in results folder). Subsequently, the best model was used to annotate named entities in all content descriptions. Single word NEs were automatically matched with multiword NEs if possible. A total of 7689 NEs were identified that way. 
+
+## Entity Linking
+The program OpenRefine was used for Entity Linking. The entities were linked automatically to the GND data of the German national library. Für die Entitäten, bei denen die automatische Zuordnung nicht funktioniert hat (etwa wegen Fehlschreibungen, Abkürzungen oder mehreren Entitäten des gleichen Namens) wurde manuelles Linking versucht. Wegen beschränkter Ressourcen wurde aber **keine detaillierte Recherche zu den Entitäten durchgeführt, sondern heuristisch vorgegangen**: Wenn es einen Schriftsteller des jeweiligen Namens gab, wurde es als wahrscheinlich angesehen, dass dieser gemeint ist und nicht beispielsweise ein Arzt gleichen Namens. Auch meine Kenntnis über Autoren, Literaturwissenschaftler und andere Personen, die wahrscheinlich in Kursbeschreibungen genannt werden, floss in diese Arbeit ein. Qualitative Eindrücke bei dieser Arbeit waren 1. dass die Namen insgesamt häufig falsch geschrieben waren (vermutlich weil Kursbeschreibungen schneller und weniger sorgfältig geschrieben werden als beispielsweise Publikationen) und 2. das v.a. Namen nicht-deutschen Ursprungs häufig falsch geschrieben wurden und deshalb nicht zugeordnet wurden. Das ist wirklich ein subjektiver Eindruck, trotzdem wurde bei solchen Namen zum Teil eine zusätzliche Google-Suche hinzugenommen, um einen eventuellen Bias auszugleichen.
+Insgesamt wurden auf diese Weise 4410 Entitäten ausgemacht. (Das bedeutet im Umkehrschluss nicht, dass 3279 Entitäten nicht zugeordnet werden konnte, denn aufgrund variablen und falschen Schreibungen der Namen kamen einige Entitäten vorher mehrfach vor).
 
 
 
@@ -57,4 +66,6 @@ In jedem Fall involvierte das Scrapen, sich damit vertraut zu machen, wie das On
 https://web.arbeitsagentur.de/studiensuche/
 www.studienwahl.at
 https://www.berufsberatung.ch/dyn/show/17500
+https://openrefine.org
+https://www.dnb.de/DE/Professionell/Standardisierung/GND/gnd_node.html
 
