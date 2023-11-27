@@ -56,7 +56,15 @@ For NER, five models were evaluated based on the manually annotated data (see ta
 ## Entity Linking
 The program OpenRefine was used for Entity Linking. The entities were linked automatically to the GND data of the German national library. Für die Entitäten, bei denen die automatische Zuordnung nicht funktioniert hat (etwa wegen Fehlschreibungen, Abkürzungen oder mehreren Entitäten des gleichen Namens) wurde manuelles Linking versucht. Wegen beschränkter Ressourcen wurde aber **keine detaillierte Recherche zu den Entitäten durchgeführt, sondern heuristisch vorgegangen**: Wenn es einen Schriftsteller des jeweiligen Namens gab, wurde es als wahrscheinlich angesehen, dass dieser gemeint ist und nicht beispielsweise ein Arzt gleichen Namens. Auch meine Kenntnis über Autoren, Literaturwissenschaftler und andere Personen, die wahrscheinlich in Kursbeschreibungen genannt werden, floss in diese Arbeit ein. Qualitative Eindrücke bei dieser Arbeit waren 1. dass die Namen insgesamt häufig falsch geschrieben waren (vermutlich weil Kursbeschreibungen schneller und weniger sorgfältig geschrieben werden als beispielsweise Publikationen) und 2. das v.a. Namen nicht-deutschen Ursprungs häufig falsch geschrieben wurden und deshalb nicht zugeordnet wurden. Das ist wirklich ein subjektiver Eindruck, trotzdem wurde bei solchen Namen zum Teil eine zusätzliche Google-Suche hinzugenommen, um einen eventuellen Bias auszugleichen.
 Insgesamt wurden auf diese Weise 4410 Entitäten ausgemacht. (Das bedeutet im Umkehrschluss nicht, dass 3279 Entitäten nicht zugeordnet werden konnte, denn aufgrund variablen und falschen Schreibungen der Namen kamen einige Entitäten vorher mehrfach vor).
+Für die gematchten Identitäten wurden aus der Gemeinsamen Normdatei jeweils das Geschlecht, der Beruf und der Ländercode abgerufen.
 
+## Further Cleaning and Processing
+Für 704 der identifizierten Entitäten ist in der GND kein Geschlecht hinterlegt. Für diese wurde mithilfe des Python Gender Guessers ein Geschlecht anhand der Vornamen geraten. Auf diese Weise blieben 203 Entitäten übrig, für die kein Geschlecht in den Metadaten vermerkt ist. Im Fall eines Transmannes wurde das in der GND angegebene Geschlecht von "Weiblich; Männlich" zu "Männlich" korrigiert. 
+Die GND verwendet bei den Berufsbezeichnungen gegenderte Formen (zum Beispiel: "Schriftsteller" und "Schriftstellerin"). Diese Bezeichnungen wurden für die quantitative Auswertung auf die männliche Form reduziert, das Geschlecht ist ja jewils in einer separaten Spalte gespeichert.
+Anschließend wurden alle Entitäten extrahiert, bei denen es sich um Schriftsteller handelt. Die GND führt hierfür verschiedene Namen (Schrifsteller, Dramatiker, Lyriker, Erzähler).
+
+# Counting
+Schließlich wurden die GND-IDs mit den Seminardaten gematcht und folgende Zählungen erhoben:
 
 
 
@@ -68,4 +76,5 @@ www.studienwahl.at
 https://www.berufsberatung.ch/dyn/show/17500
 https://openrefine.org
 https://www.dnb.de/DE/Professionell/Standardisierung/GND/gnd_node.html
+https://pypi.org/project/gender-guesser/
 
