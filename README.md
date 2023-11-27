@@ -31,7 +31,7 @@ Each row represents a writer. The columns represent:
 - the date of death according to the GND
 - the gender according to the GND/as identified by the gender guesser (see section on further cleaning below)
 - the associated countries according to the GND
-- a normalised form of the countries, where only the association with Germany (D), Austria (Ö) or Switzerland (S) is stored
+- a normalised form of the countries, where only the association with Germany (D), Austria (Ö) or Switzerland (S) is stored. (In the case of Switzerland there seems to be a mix up in the GND so that "Europa" is the entry for "Switzerland", this was corrected in the normalised column.)
 - counts... 
 
 ### data/universities.csv
