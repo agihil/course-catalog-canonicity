@@ -9,7 +9,7 @@ The idea behind this is that mentions of writers in course descriptions of liter
 
 The subject "German studies" is usually divided in three to four parts: Literary studies for the medieval period (ÄDL), Literary studies for the modern period (NDL), Linguistics and, if it is a program for teachers-to-be Didactics. For this project, the focus was on the modern period. 
 
-In the following you find 1. a description of the data, code and results in this repository and 2. a more detailed documentation on how the data was obtained.
+In the following you find 1. a description of the data in this repository and 2. a more detailed documentation on how the data was obtained.
 
 # Description
 ## Data
