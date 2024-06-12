@@ -51,6 +51,13 @@ The table contains the data collected in a study by Jürgen Hein in 1990. Hein c
 ## data/universities.csv
 The table contains short names and the real names of the universities sampled.
 
+## Notebooks
+There are three notebooks in which figures describing the data are produced and analyses on the data are carried out.
+The Notebook notebooks/analyse+vis_1_summarize_data.ipynb produces figures to explore and visualize the lvs dataset.
+The Notebook notebooks/analyse+vis_2_people.ipynb produces figures to explore and visualize the people dataset.
+The Notebook notebooks/analyse+vis_2_people.ipynb brings the two datasets (lvs and people) together and analyses how often which writers appear in the courses.
+
+
 ## Selection Process
 
 ### Lists of German Studies Programs in Germany, Austria and Switzerland.
