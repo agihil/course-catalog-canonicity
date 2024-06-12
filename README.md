@@ -13,68 +13,24 @@ In the following you find 1. a description of the data, code and results in this
 
 # Description
 ## Data
-### data/courses.csv
+### data/lvs.csv
 Each row represents a university course. The columns represent:
-- an ID (assigned by me, composed of city and number) (ID)
-- the title of the course (title)
-- the information whether an associated description has been extracted (1) or not (0). The content description itself is not published here so that no rights are violated. (inhalt_count)
-- the semester in which the course is held (semester)
-- the semester as a timestamp (09+year for winter term; 04+year for summer term) (semester_start)
-- the short name of the university (university)
-- the respective country (country)
-- the GND-IDs belonging to the named entitites identified in the course description. (For a more detailed description look below.) (NER_GNDs)
+- an ID (assigned by me, composed of the city of the university and a number) (ID)
+- the title of the course (Titel)
+- the description of the course (Inhalt)
+- the information whether an associated description has been extracted (1) or not (0). (inhalt_count)
+- the semester in which the course was held (semester)
+- the semester begin as a timestamp (09+year for winter term; 04+year for summer term) (Intervall-Start)
+- the semester end as a timestamp (09+year for winter term; 04+year for summer term) (Intervall-End)
+- a short name of the university where the course was held (university)
+- the country of the university (Land)
+- the identified Named Entities in the course title (NER_Pers_Titel)
+- the identified Named Entities in the course description (NER_Pers_Inhalt)
+- the identified Named Entities in the course title in a lemmatised form (NER_Pers_Titel_lemm)
+- the identified Named Entities in the course description in a lemmatised form (NER_Pers_Inhalt_lemm)
+- the IDs from the Gemeinsame Normdatei (GND) for the identified people in the titles (only for those Entities who could be identified. (For a more detailed description see below.) (NER_GNDs_Titel)
+- the IDs from the Gemeinsame Normdatei (GND) for the identified people in the descriptions (only for those Entities who could be identified. (For a more detailed description see below.) (NER_GNDs_Inhalt)
 
-### data/writers.csv
-Each row represents a writer. The columns represent:
-- the GND-ID (GND-ID)
-- the name according to the GND (Name_identifiziert)
-- the occupation according to the GND (occupation_GND)
-- the date of birth accoring to the GND (birth_GND)
-- the date of death according to the GND (death_GND)
-- the gender according to the GND/as identified by the gender guesser (see section on further cleaning below) (gender)
-- the associated countries according to the GND (country_GND)
-- a normalised form of the countries, where only the association with Germany (D), Austria (Ö) or Switzerland (S) is stored. (In the case of Switzerland there seems to be a mix up in the GND so that "Europa" is the entry for "Switzerland", this was corrected in the normalised column.) (country_norm)
-
-### data/persons.csv
-Each row represents a person. The columns represent:
-- the GND-ID (GND-ID)
-- the occupation according to the GND (occupation_GND)
-- the date of birth accoring to the GND (birth_GND)
-- the date of death according to the GND (death_GND)
-- the gender according to the GND (gender_GND)
-- the associated countries according to the GND (country_GND)
-
-### data/writer_counts.csv
-The table is obtained from the tables data/writers.csv and data/courses.csv using the notebook writers_get_counts.ipynb.
-Each row represents a writer, indexed by the GND-ID.
-The columns represent:
-- the total number of mentions in all the course descriptions (total)
-- for each university: the total number of mentions of this author in the courses held at this university (resp.uni+_total)
-- for each university: the relative number of mentions of the resp. author in the courses held at this university. Relative number in this context means: the total number of mentions of the resp. author divided by the number of course descriptions scraped for the resp. university (resp.uni+_rel)
-- for each country: the total number of mentions in all course descriptions of the universities in that country. (G is short for Germany, A for Austria, S for Switzerland) (total_+resp.country)
-- for each country: the relative number of mentions of the resp. author. Relative number in this context means: The sum of relative numbers of mentions of the resp. author per university divided by the number of universities assigned to the resp. country. (rel_+resp.country)
-
-### data/time_counts.csv
-The table is obtained from the tables data/writers.csv and data/courses.csv using the notebook time_get_counts.ipynb.
-Each row represents a semester, Which semester can be seen from the column (semester-start) that contains timestamps (see above: data/courses.csv).
-The columns represent:
-- for each university: the total number of writers mentioned in the course descriptions of the resp. semester (resp.uni+_total)
-- for each university: the rel number of writers mentioned in the resp. semester, meaning that the total number of writers in the resp. semester is divided by the number of course descriptions available in this semester. (resp.uni+_rel)
-- for each university: the total number of female writers mentioned in the course descriptions of the resp. semester (resp.uni+_total_F)
-- for each university: the total number of male writers mentioned in the course descriptions of the resp. semester (resp.uni+_total_M)
-- for each university: the relative number of female writers mentioned in the course descriptions of the resp. semester divided by the total number of writers mentioned in the course descriptions of the resp. semester (resp.uni+_rel_F)
-- for each university: the relative number of male writers mentioned in the course descriptions of the resp. semester divided by the total number of writers mentioned in the course descriptions of the resp. semester (resp.uni+_rel_M)
-- for each university: the relative number of male writers mentioned in the course descriptions of the resp. semester divided by the total number of writers mentioned in the course descriptions of the resp. semester (resp.uni+_relrel_F)
-- for each university: the double-relative number of male writers mentioned in the course descriptions of the resp. semester divided by the total number of writers mentioned in the course descriptions of the resp. semester and again divided by the number of course descriptions available for the resp. semester (resp.uni+_relrel_M)
-
-### data/universities.csv
-The table contains short names and the real names of the universities sampled.
-
-## Notebooks
-The notebooks are found in the main folder. A description of what the notebooks do is found at the top of each file.
-Overview: The notebook total_numbers.ipynb visualizes statistics about the identified persons and writers. The notebooks writers_get_counts.ipynb and time_get_counts.ipynb are used to extract the tables data/writer_counts.csv and data/time_counts.csv from the tables data/writers.csv and data/courses.csv. The extracted that way is than visualized, and further statistics computed for it in the notebooks writers_statistics_and_visualize.ipynb and time_statistics_and_visualize.ipynb.
-
-# Detailed Documentation
 
 ## Selection Process
 
