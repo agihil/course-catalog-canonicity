@@ -1,11 +1,13 @@
 # course-catalog-canonicity
 
+The data and code in this repository is the basis for the paper "On reconstructions of academic canonicity", published in the context of DH24, see: [link].
+
 The repository contains a dataset that describes which writers appear how frequently in course descriptions of (modern) German studies courses in a randomly 
 selected but non-representative sample of six German, two Austrian universities and one Swiss university.
 
 The idea behind this is that mentions of writers in course descriptions of literary studies programs are an indicator for what is taught in these courses and that again is an indicator of the academic canonicity of the respective writer in the time the course is held. 
 
-The subject "German studies" is usually divided in three to four parts: Literary studies for the medieval period (ÄDL), Literary studies for the modern period (NDL), Linguistics and, if it is a program for teachers-to-be Didactics. For this project, the focus was on the modern period (since this is my field of study). 
+The subject "German studies" is usually divided in three to four parts: Literary studies for the medieval period (ÄDL), Literary studies for the modern period (NDL), Linguistics and, if it is a program for teachers-to-be Didactics. For this project, the focus was on the modern period. 
 
 In the following you find 1. a description of the data, code and results in this repository and 2. a more detailed documentation on how the data was obtained.
 
