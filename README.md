@@ -41,28 +41,29 @@ Each row represents a person identified in the course titles or descriptions. Th
 - the person`s date of birth (Geburtsdatum)
 - the person`s gender (Geschlecht)
 
-## data/hein_1990
+## data/hein_1990.csv
 The table contains the data collected in a study by Jürgen Hein in 1990. Hein collected data on courses from several German universities and counted per writer the number of courses dealing with them for the time between the summer semester 1970 until winter semester 1986/87. In the table each row represents a writer. The column represent:
 - the name of the writer as named by Hein (Hein_Benennung)
 - the GND-ID of the writer as identified by me (GND-Nummer)
 - the count of courses as listet by Hein (Gesamt_count) \[The numbers in square brackets stand for the number of courses after 1980.\]
 - the literary period as listet by Hein (Epoche_Hein)
 
+## data/universities.csv
+The table contains short names and the real names of the universities sampled.
 
 ## Selection Process
 
 ### Lists of German Studies Programs in Germany, Austria and Switzerland.
 The population surveyed in this project are German studies courses in Germany, Austria and Switzerland. Therefore, the first step was to compile lists of German studies courses in these countries. 
-The initial aim was to select degree programs, not universities. Therefore, the information collected is more detailed than actually used in the later analysis.
 
 #### Germany
-For Germany, the website of the "Agentur für Arbeit" (https://web.arbeitsagentur.de/studiensuche/) was used and the keywords "Germanistik" and "Deutsch" were searched for using the search function. The resulting lists were copied into a table. 
+For Germany, the website of the "Agentur für Arbeit" (https://web.arbeitsagentur.de/studiensuche/) was used and the keywords "Germanistik" and "Deutsch" were searched for, using the search function. The resulting lists were copied into a table. 
 Degree programs with a focus on the Middle Ages, linguistics, interculturality, translation, German as a second or foreign language, degree programs in which German Studies was only a minor subject, as well as degree programs that clearly did not deal with literary studies but only with the German language were removed. For the remaining study programs, the following was recorded (partly automatically, partly manually):
-the city, the federal state, the degree, whether it was a teachers' training program and, if so, for which type of school. Subsequently, for the sake of simplicity all teacher training programs except for the "Gymnasium" school type were removed.
+the city, the federal state, the degree, whether it was a teachers' training program and, if so, for which type of school. Subsequently, for the sake of simplicity all teacher training programs except for the "Gymnasium" (high school) type were removed.
 126 study programs were obtained that way.
 
 #### Austria
-The starting point was the website www.studienwahl.at. There, the keyword "Germanistik" was searched for and, as with the example of Germany, some degree courses were removed and additional information recorded.
+The starting point was the website www.studienwahl.at. There, the keyword "Germanistik" was searched for, and, as with the example of Germany, some degree courses were removed and additional information recorded.
 15 study programs were obtained that way.
 
 #### Switzerland
@@ -70,8 +71,8 @@ The starting point for Switzerland was the website https://www.berufsberatung.ch
 12 study programs were obtained that way.
 
 ### Selection
-The initial idea was to select degree programs. The parameters used were the type of degree and whether or not it was a teacher training course. For Germany, it was also taken into account whether it was a former East German or West Germany.
-In order to scrape a course catalog, you have to familiarize yourself with its structure. Since this takes some time, it quickly became clear that it would make more sense to scrape all courses of a university in the field of NDL (modern German literature) if you have already familiarized yourself with the structure, instead of keeping the respective course of study as an additional limiting parameter.
+The initial idea was to select degree programs. The parameters used were the type of degree and whether or not it was a teacher training course. For Germany, the federal states were also taken into account.
+In order to scrape a course catalog, one has to familiarize with its structure. Since this takes some time, it quickly became clear that it would make more sense to scrape all courses of a university in the field of NDL (modern German literature), instead of keeping the respective course of study as an additional limiting parameter.
 Therefore, the lists of study programs were reduced to lists of universities. For Germany, three universities were selected from the former East German states and three from the former West German states (Berlin was included in both groups). If a university from a federal state was selected, the other universities from this federal state were removed from the list so that no federal state would be represented by two universities. Two universities were selected for Austria and one for Switzerland.
 The random selection was repeated for individual cases if there was no online course catalog that met the criteria (see below: Scraping).
 
@@ -82,29 +83,22 @@ In any case, the scraping involved familiarizing myself with how the online cour
 
 ## Scraped courses data
 A total of 7185 events were scraped in this way, 6127 of which also had course descriptions scraped. The course descriptions contain a total of 868125 tokens and have an average length of 141,7 tokens.
-Figures figures/total_numbers1.png and figures/total_numbers2.png show the quantitites of descriptions and titles obtained per semester and uni. The figures are plotted using the notebook total_numbers.ipynb.
+The Figures in the subfolder "datasummaries" show the quantitites of descriptions and titles obtained per semester and uni as well as the distributions of text lengths for the titles and descriptions. These figures are plotted using the notebook analyse+vis_1_summarize_data.ipynb.
 
 ## Manual annotation
-Six course descriptions were randomly chosen from each university for manual annotation. References to Persons (NEs) and, as a subset, to writers were annotated. Of the 179 NEs identified, about 53%, belong to writers. This led to the insight that Named Entitiy Recognition (NER) alone is not sufficient to identify writers.
+Six course descriptions were randomly chosen from each university for manual annotation. References to Persons (NEs) and, as a subset, to writers were annotated. Of the 179 NEs identified, about 53%, belonged to writers. This led to the insight that Named Entitiy Recognition (NER) alone is not sufficient to identify writers and additional Entitiy Linking was necessary.
 
 ## NER
-For NER, five models were evaluated based on the manually annotated data (see table 1 in results folder). Subsequently, the best model was used to annotate named entities in all content descriptions. Nach der NER wurden die NEs mit Spacy lemmatisiert. Single word NEs were automatically matched with multiword NEs if possible. A total of 7689 NEs were identified that way. 
+For NER, five models were evaluated based on the manually annotated data (see table 1 in the paper). Subsequently, the best model was used to annotate named entities in all content descriptions. After NER the NEs were lemmatised using spacy. Single word NEs were automatically matched with multiword NEs if possible. A total of 7689 NEs were identified that way. 
 
 ## Entity Linking
 The program OpenRefine was used for Entity Linking. The entities were linked automatically to the GND data of the German national library. Manual linking was attempted for entities for which the automatic assignment did not work (e.g. due to misspellings, abbreviations or several entities with the same name). Due to limited resources, however, **no detailed research was carried out on the entities, but a heuristic approach was taken**: If there was a writer of the particular name, it was considered likely that this was meant and not, for example, a doctor of the same name. My knowledge of authors, literary scholars and other people who are likely to be mentioned in course descriptions was also incorporated into this work. Qualitative impressions of this work were 1. that the names were often misspelled overall (presumably because course descriptions are written more quickly and less carefully than publications, for example) and 2. that names of non-German origin in particular were often misspelled and therefore not assigned. This is really a subjective impression, but an additional Google search was sometimes carried out for such names in order to compensate for any bias.
-A total of 4410 entities were identified in this way. ( This does not mean, by implication, that 3279 entities could not be matched, because due to variable and incorrect spellings of the names, some entities previously appeared more than once).
+A total of 4410 entities were identified in this way. (This does not mean, by implication, that 3279 entities could not be matched, because due to variable and incorrect spellings of the names, some entities previously appeared more than once).
 For each of the matched identities, a standardized name, gender, occupation and country code were retrieved from the Gemeinsame Normdatei.
 
 ## Further Cleaning and Processing
 No gender was recorded in the GND for 704 of the identified entities. For these, a gender was guessed based on the first names using the Python Gender Guesser. This left 203 entities for which no gender is recorded in the metadata. In one case of a trans man, the gender given in the GND was corrected from "Female; Male" to "Male". 
 The GND uses gendered forms for job titles (for example: "Schriftsteller" and "Schriftstellerin"). These terms were reduced to the masculine form to faciliate quantitative analysis, since the gender is stored in a separate column in each case anyway.
-Subsequently, all entities that belong to writers were extracted (data/writers.csv). The GND lists various names for this (writer, playwright, lyricist, narrator), all of these occupations was counted as "writer". The number of writers extracted is in total 1814.
-
-# Counting
-Finally, the GND IDs were matched with the seminar data and counted: 1. (per author) how often which author is mentioned where and how often and 2. (per semester): How many authors are mentioned in which semester? How many women are mentioned? How many men are mentioned?
-In both cases, absolute and relative values were collected. Relative here means in part a double normalization. Firstly, normalization must be carried out in relation to the universities, as there are major differences in how many content descriptions are available for which university. In a second step, the values for the countries were divided by the number of universities per country in order to compare them with each other.
-
-
 
 
 
