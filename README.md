@@ -31,6 +31,23 @@ Each row represents a university course. The columns represent:
 - the IDs from the Gemeinsame Normdatei (GND) for the identified people in the titles (only for those Entities who could be identified. (For a more detailed description see below.) (NER_GNDs_Titel)
 - the IDs from the Gemeinsame Normdatei (GND) for the identified people in the descriptions (only for those Entities who could be identified. (For a more detailed description see below.) (NER_GNDs_Inhalt)
 
+## data/people.csv
+Each row represents a person identified in the course titles or descriptions. The columns reprsent metadata about these people from the GND:
+- the GND ID of the identified person (GND-Nummer)
+- the persons`s preferred name (Bevorzugter Name)
+- the person`s country/countries of residence (Ländercode)
+- a short form of the person`s country/countries of residence, only considering Germany, Austria and Switzerland (Land)
+- the persons`s occupation(s) (Beruf oder Beschäftigung)
+- the person`s date of birth (Geburtsdatum)
+- the person`s gender (Geschlecht)
+
+## data/hein_1990
+The table contains the data collected in a study by Jürgen Hein in 1990. Hein collected data on courses from several German universities and counted per writer the number of courses dealing with them for the time between the summer semester 1970 until winter semester 1986/87. In the table each row represents a writer. The column represent:
+- the name of the writer as named by Hein (Hein_Benennung)
+- the GND-ID of the writer as identified by me (GND-Nummer)
+- the count of courses as listet by Hein (Gesamt_count) \[The numbers in square brackets stand for the number of courses after 1980.\]
+- the literary period as listet by Hein (Epoche_Hein)
+
 
 ## Selection Process
 
