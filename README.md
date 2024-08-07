@@ -31,6 +31,16 @@ Each row represents a university course. The columns represent:
 - the IDs from the Gemeinsame Normdatei (GND) for the identified people in the titles (only for those Entities who could be identified. (For a more detailed description see below.) (NER_GNDs_Titel)
 - the IDs from the Gemeinsame Normdatei (GND) for the identified people in the descriptions (only for those Entities who could be identified. (For a more detailed description see below.) (NER_GNDs_Inhalt)
 
+### data/authors.csv
+Each row represents a writer identified in the course titles or descriptions. Writers here are people, where "Schriftsteller", "Lyriker", "Dramatiker" or "Erzähler" is stored as an occupation in the GND. The columns reprsent metadata about these people from the GND as well as counts of there mentions in the courses:
+- the GND ID of the identified person (GND-Nummer)
+- the persons`s preferred name (Bevorzugter Name)
+- the person`s country/countries of residence (Ländercode)
+- a short form of the person`s country/countries of residence, only considering Germany, Austria and Switzerland (Land)
+- the persons`s occupation(s) (Beruf oder Beschäftigung)
+- the person`s date of birth (Geburtsdatum)
+- the person`s sex (Geschlecht)
+
 ## data/people.csv
 Each row represents a person identified in the course titles or descriptions. The columns reprsent metadata about these people from the GND:
 - the GND ID of the identified person (GND-Nummer)
@@ -39,7 +49,7 @@ Each row represents a person identified in the course titles or descriptions. Th
 - a short form of the person`s country/countries of residence, only considering Germany, Austria and Switzerland (Land)
 - the persons`s occupation(s) (Beruf oder Beschäftigung)
 - the person`s date of birth (Geburtsdatum)
-- the person`s gender (Geschlecht)
+- the person`s sex (Geschlecht)
 
 ## data/hein_1990.csv
 The table contains the data collected in a study by Jürgen Hein in 1990. Hein collected data on courses from several German universities and counted per writer the number of courses dealing with them for the time between the summer semester 1970 until winter semester 1986/87. In the table each row represents a writer. The column represent:
@@ -104,9 +114,9 @@ A total of 4410 entities were identified in this way. (This does not mean, by im
 For each of the matched identities, a standardized name, gender, occupation and country code were retrieved from the Gemeinsame Normdatei.
 
 ## Further Cleaning and Processing
-No gender was recorded in the GND for 704 of the identified entities. For these, a gender was guessed based on the first names using the Python Gender Guesser. This left 203 entities for which no gender is recorded in the metadata. In one case of a trans man, the gender given in the GND was corrected from "Female; Male" to "Male". 
 The GND uses gendered forms for job titles (for example: "Schriftsteller" and "Schriftstellerin"). These terms were reduced to the masculine form to faciliate quantitative analysis, since the gender is stored in a separate column in each case anyway.
-
+In one case of a trans man, the gender given in the GND was corrected from "Female; Male" to "Male". 
+(In a previous version of this dataset, the gender of those people, where the GND recorded the sex as "Unbekannt" was guessed using the Python Gender Guesser. This step was reversed in the current version.)
 
 
 # Resources
