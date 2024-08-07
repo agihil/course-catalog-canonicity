@@ -40,6 +40,10 @@ Each row represents a writer identified in the course titles or descriptions. Wr
 - the persons`s occupation(s) (Beruf oder Beschäftigung)
 - the person`s date of birth (Geburtsdatum)
 - the person`s sex (Geschlecht)
+- the absolute numbers of mentions in course descriptions for the individual universities (basel,	chemnitz,	erfurt,	graz,	halle,	mainz,	marburg,	stuttgart,	wien)
+- the relative frequency of mentions in course descriptions per university (chemnitz_rel,	erfurt_rel,	graz_rel,	halle_rel,	mainz_rel,	marburg_rel,	stuttgart_rel,	wien_rel)
+- the relative frequency of mentions in course descriptions per country of the universities (Ö_inhalt_relrel,	S_inhalt_relrel,	D_inhalt_relrel)
+- the relative frequency of mentions in all course descriptions (inhalt_relrelrel)
 
 ## data/people.csv
 Each row represents a person identified in the course titles or descriptions. The columns reprsent metadata about these people from the GND:
